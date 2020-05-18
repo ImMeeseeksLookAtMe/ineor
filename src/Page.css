@@ -1,0 +1,225 @@
+ .header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+/*section text*/
+.header > h2 {
+  font-family: 'Squada One', cursive;
+  font-size: 58px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+
+.forWord {
+  color: black;
+  font-family: 'Roboto Slab', serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.large-brake {
+  display: none;
+}
+
+/*section image*/
+.flex-image {
+  max-width: 50%;
+  height: auto;
+  border: 3px solid black;
+  padding: 10px;
+  border-radius: 0px;
+  margin-left: 14.5%;
+  margin-bottom: 5%;
+  z-index: -1;
+  position: absolute;
+}
+.barber {
+  max-width: 100%;
+  vertical-align: top;
+  height: auto
+}
+
+.book-appointment-header {
+  display:block;
+  width:100%;
+
+}
+
+/*section: form*/
+.input-container {
+  background-color:#1e2841;
+  max-width: 20%;
+  min-width: 380px;
+  height: 100%;
+  margin-left: 55%;
+  margin-top: 15%;
+  margin-bottom: 1%;
+  padding: 20px;
+}
+
+.input-columns {
+  display: grid;
+  grid-column-gap: 1px;
+  grid-gap: 30px;
+  grid-template-columns: auto auto;
+  padding-bottom: 30px; 
+}
+
+.input-container > div {
+  text-align: center;
+}
+
+ .input-container > div > input {
+  font-family: 'Roboto Slab', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 0px;
+  height: 30px;
+  border: none;
+  padding-left: 5px;
+}
+
+.input-container > div > select {
+  font-family: 'Roboto Slab', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 0px;
+  height: 30px;
+  border: none;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.input-columns > div > input {
+  font-family: 'Roboto Slab', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 0px;
+  height: 30px;
+  border: none;
+  padding-left: 5px; 
+}
+.input-columns > div > select {
+  font-family: 'Roboto Slab', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 0px;
+  height: 30px;
+  border: none;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.pick {
+  font-family: 'Roboto Slab', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 0px;
+  height: 30px;
+  border: none;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.input-item9 {
+  padding-bottom: 30px;
+
+}
+
+.input-container > .book-appointment-header > h2 {
+  font-family: 'Squada One', cursive;
+  font-size: 37px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  color: white
+}
+
+.item > input {
+  width: 100%
+}
+
+
+.button {
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  padding: 5%;
+  background-color: #f6885b;
+  color:#ffffff;
+  border-radius: 40px;
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+
+/*mobile*/
+
+@media only screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;;
+    justify-content: center;
+  }
+
+  .flex-image {
+    max-width: 95%;
+    height: auto;
+    border: 3px solid black;
+    border-radius: 0px;
+    z-index: 0;
+    position: relative;
+    margin: 2%;
+  }
+
+  .input-container {
+    background-color:#1e2841;
+    max-width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-column-gap: 1px;
+    grid-gap: 20px;
+  }
+
+  .input-columns {
+    display: grid;
+    grid-column-gap: 1px;
+    grid-gap: 20px;
+    grid-template-columns: auto;
+    padding-bottom: 0px; 
+  }
+
+  .container > .flex {
+  background-color: #f1f1f1;
+  width: 100%;
+  }
+
+  /*break text*/
+  .small-brake {
+    display: none;
+  }
+
+  .diss {
+    display: none;
+  }
+
+}
+
