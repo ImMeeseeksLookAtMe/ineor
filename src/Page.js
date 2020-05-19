@@ -4,7 +4,7 @@ import './Page.css';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import setHours from "date-fns/setMinutes";
 import setMinutes from "date-fns/setMinutes";
 import subDays from "date-fns/subDays";
@@ -18,6 +18,7 @@ const Page = () => {
         contactNumber: '',
         
     })
+    let history = useHistory();
     
     const [ barbers, setBarbers ] = useState([])
     const [ services, setServices ] = useState([])
@@ -50,7 +51,7 @@ const Page = () => {
     
     const[ selectSer, setSelectSer ] = useState(0)
 
-
+   
     const {
         firstName,
         lastName,
@@ -85,11 +86,12 @@ const Page = () => {
           try {
             const sendData = await axios.post('http://localhost:3000/appointments', appData, config)
             console.log(sendData)
+            history.push('/senddata')
           } catch(err) {
             console.log("sending problem")
           }
         }
-        postData()
+        postData()   
     }
 
   return (
@@ -197,8 +199,8 @@ const Page = () => {
                       dateFormat="HH:mm"
                       className="pick"
                       placeholderText="Start Time"
-                      minTime={setHours(setMinutes(new Date(), 0),7)}
-                      maxTime={setHours(setMinutes(new Date(), 30),15)} 
+                      /* minTime={setHours(setMinutes(new Date(), 0),7)}
+                      maxTime={setHours(setMinutes(new Date(), 30),15)}  */
                       /*excludeTimes={workHours.map(app => (
                       setHours(setMinutes(new Date(), app.startHour), Number(app.endHour)))
                       )}*/
@@ -232,5 +234,5 @@ const Page = () => {
  );
 }
 
-export default Page;
+export default withRouter(Page);
     
