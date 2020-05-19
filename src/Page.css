@@ -71,8 +71,8 @@
   padding-bottom: 30px; 
 }
 
-.input-container > div {
-  text-align: center;
+.input-container > div > h2 {
+  text-align: center
 }
 
  .input-container > div > input {
@@ -108,6 +108,7 @@
   border: none;
   padding-left: 5px; 
 }
+
 .input-columns > div > select {
   font-family: 'Roboto Slab', cursive;
   font-size: 14px;
@@ -129,7 +130,6 @@
   height: 30px;
   border: none;
   padding-left: 5px;
-  width: 100%;
 }
 
 .input-item9 {
@@ -199,6 +199,11 @@
     grid-gap: 20px;
   }
 
+  .pick {
+    width: 444px; /* 100% ne deluje*/
+  }
+  
+
   .input-columns {
     display: grid;
     grid-column-gap: 1px;
@@ -211,7 +216,8 @@
   background-color: #f1f1f1;
   width: 100%;
   }
-
+  
+  
   /*break text*/
   .small-brake {
     display: none;
