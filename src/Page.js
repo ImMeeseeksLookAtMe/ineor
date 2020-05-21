@@ -5,9 +5,8 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { withRouter, useHistory } from 'react-router-dom';
-import setHours from "date-fns/setMinutes";
+import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
-import subDays from "date-fns/subDays";
 import getDay from "date-fns/getDay";
 
 const Page = () => {
@@ -24,6 +23,8 @@ const Page = () => {
     const [ services, setServices ] = useState([])
     const [ appointments, setAppointments ] = useState([])
     const [ workHours, setWorkHours ] = useState([])
+
+    console.log(workHours)
 
     useEffect(() => {
         async function getData() {
@@ -73,7 +74,33 @@ const Page = () => {
       return day !== 0 && day !== 6;
     };
     
-
+    //Working hours MIN on the selected day
+    const minMoTuWe = date => {
+      const dateDay = getDay(date)
+      let found = workHours.find( ({ day }) => day === dateDay )
+      let result;
+      if((dateDay === 1 || dateDay === 2 || dateDay === 3)) {
+        result = setHours(setMinutes(new Date(date), 0), found.startHour) 
+      }
+      if((dateDay === 4 || dateDay === 5)) {
+        result = setHours(setMinutes(new Date(date), 0), found.startHour) 
+      }
+      return result 
+    }
+    //Working hours MAX on the selected day
+    const maxMoTuWe = date => {
+      const dateDay = getDay(date);
+      const found = workHours.find( ({ day }) => day === dateDay )
+      let result;
+      if((dateDay === 1 || dateDay === 2 || dateDay === 3)) {
+        result = setHours(setMinutes(new Date(date), 0), Number(found.endHour)) 
+      }
+      if((dateDay === 4 || dateDay === 5)) {
+        result = setHours(setMinutes(new Date(date), 0), Number(found.endHour))  
+      }
+      return result
+    }
+  
     const onSubmit = e => {
         e.preventDefault()
         //funkcija post
@@ -83,12 +110,13 @@ const Page = () => {
                 'Content-Type': 'application/json'
             }
           }
+
           try {
             const sendData = await axios.post('http://localhost:3000/appointments', appData, config)
             console.log(sendData)
             history.push('/senddata')
           } catch(err) {
-            console.log("sending problem")
+            console.log(err)
           }
         }
         postData()   
@@ -183,6 +211,7 @@ const Page = () => {
                     selected={ startDate }
                     className="pick"
                     placeholderText="Start Date"
+                    minDate={new Date()}
                     filterDate={isWeekday}
                     onChange={date => setStartDate(date)}
                     required
@@ -196,14 +225,16 @@ const Page = () => {
                       showTimeSelectOnly
                       timeIntervals={15}
                       timeCaption="Time"
+                      timeFormat="HH:mm"
                       dateFormat="HH:mm"
                       className="pick"
                       placeholderText="Start Time"
-                      /* minTime={setHours(setMinutes(new Date(), 0),7)}
-                      maxTime={setHours(setMinutes(new Date(), 30),15)}  */
-                      /*excludeTimes={workHours.map(app => (
+                      timeCaption="Time"
+                      minTime={minMoTuWe(startDate)}
+                      maxTime={maxMoTuWe(startDate)}
+                      /* excludeTimes={ workHours.map(app => (
                       setHours(setMinutes(new Date(), app.startHour), Number(app.endHour)))
-                      )}*/
+                      )} */
                       required
                     />
                     </div>
