@@ -98,7 +98,23 @@ const Page = () => {
       if((dateDay === 4 || dateDay === 5)) {
         result = setHours(setMinutes(new Date(date), 0), Number(found.endHour))  
       }
+      console.log(result)
       return result
+    }
+
+    //Working hours break on the selected day 
+
+    const lunchTime = date => {
+      const dateDay = getDay(date);
+      let found = workHours.find( ({ day }) => day === dateDay )
+      let result;
+      if(( dateDay === 1 || dateDay === 2 || dateDay === 3 )) {
+        result = setHours(setMinutes(new Date(date), found.lunchTime.durationMinutes), found.lunchTime.startHour)
+      }
+      if(( dateDay === 4 || dateDay === 5 )) {
+        result = setHours(setMinutes(new Date(date), found.lunchTime.durationMinutes), found.lunchTime.startHour)
+      }
+      return result;
     }
   
     const onSubmit = e => {
@@ -232,9 +248,12 @@ const Page = () => {
                       timeCaption="Time"
                       minTime={minMoTuWe(startDate)}
                       maxTime={maxMoTuWe(startDate)}
-                      /* excludeTimes={ workHours.map(app => (
-                      setHours(setMinutes(new Date(), app.startHour), Number(app.endHour)))
-                      )} */
+                      excludeTimes={
+                        [
+                          lunchTime(startDate),
+                          //manjka ŠE appointmenti
+                        ]
+                      }
                       required
                     />
                     </div>
